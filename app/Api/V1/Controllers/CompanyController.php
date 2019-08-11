@@ -5,7 +5,7 @@ namespace App\Api\V1\Controllers;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
-use App\Api\V1\Requests\LoginRequest;
+use App\Api\V1\Requests\CompanyRequest;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use App\Feature\Service\Company\CompanyService;
@@ -33,8 +33,10 @@ class CompanyController extends Controller
      */
     public function getCompanies()
     {
-        echo 'getCompanies';
-        // return response()->json(Auth::guard()->user());
+        $company_service = $this->companyService;
+        $companies = $company_service->getCompany();
+
+        return response()->api($companies);
     }
 
     /**
@@ -44,10 +46,10 @@ class CompanyController extends Controller
      */
     public function getCompany()
     {
-        echo 'getCompany';
         $company_service = $this->companyService;
-        $company_service->getCompany();
-        // return response()->json(Auth::guard()->user());
+        $companies = $company_service->getCompany();
+
+        return response()->api($companies);
     }
 
     /**
@@ -55,10 +57,16 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function saveCompany()
+    public function saveCompany(CompanyRequest $request)
     {
-        echo 'save company';
-        // return response()->json(Auth::guard()->user());
+        $params = $request->only(['name']);
+
+        $company_service = $this->companyService;
+        $company_id = $company_service->saveCompany($params);
+
+        return response()->json([
+            'company_id' => $company_id
+        ]);
     }
 
     /**
