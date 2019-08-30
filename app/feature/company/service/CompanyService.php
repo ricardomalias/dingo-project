@@ -24,4 +24,28 @@ class CompanyService {
             return $company_model->company_id;
         }
     }
+
+    public function editCompany($data) {
+
+        $company_model = new Company();
+
+        $company_model->where(array(
+           'company_id' => $data['company_id']
+        ));
+
+        echo ($company_model->count());
+        exit();
+
+//        if($company_model->count()) {
+//
+//        }
+
+//        $company_model->name = $data['name'];
+//        $company_model->status = 1;
+//
+//        if($company_model->update())
+//        {
+//            return $company_model->company_id;
+//        }
+    }
 }

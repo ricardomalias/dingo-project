@@ -74,9 +74,16 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function editCompany()
+    public function editCompany(CompanyRequest $request)
     {
-        echo 'edit company';
+        $params = $request->only(['name', 'company_id']);
+
+        $company_service = $this->companyService;
+        $company_id = $company_service->editCompany($params);
+
+//        return response()->json([
+//            'company_id' => $company_id
+//        ]);
         // return response()->json(Auth::guard()->user());
     }
 
