@@ -29,23 +29,33 @@ class CompanyService {
 
         $company_model = new Company();
 
-        $company_model->where(array(
+        $company_model = $company_model->where(array(
            'company_id' => $data['company_id']
         ));
 
-        echo ($company_model->count());
-        exit();
+        if($company_model->count()) {
+            $data_edit = array();
 
-//        if($company_model->count()) {
-//
-//        }
+            $data_edit['name'] = $data['name'];
 
-//        $company_model->name = $data['name'];
-//        $company_model->status = 1;
-//
-//        if($company_model->update())
-//        {
-//            return $company_model->company_id;
-//        }
+            if($company_model->update($data_edit))
+            {
+                return $company_model->first();
+            }
+        }
+    }
+
+    public function deleteCompany($data) {
+
+        $company_model = new Company();
+
+        $company_model = $company_model->where(array(
+            'company_id' => $data['company_id']
+        ));
+
+        if($company_model->count()) {
+
+            return $company_model->delete();
+        }
     }
 }

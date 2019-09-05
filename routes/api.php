@@ -22,7 +22,7 @@ $api->version('v1', function (Router $api) {
             $api->get('/', 'App\\Api\\V1\\Controllers\\CompanyController@getCompanies');
             $api->get('/{uid}', 'App\\Api\\V1\\Controllers\\CompanyController@getCompany');
             $api->put('/', 'App\\Api\\V1\\Controllers\\CompanyController@editCompany');
-            $api->delete('/', 'App\\Api\\V1\\Controllers\\CompanyController@deleteCompany');
+            $api->delete('/{uid}', 'App\\Api\\V1\\Controllers\\CompanyController@deleteCompany');
         });
     });
 

@@ -79,12 +79,9 @@ class CompanyController extends Controller
         $params = $request->only(['name', 'company_id']);
 
         $company_service = $this->companyService;
-        $company_id = $company_service->editCompany($params);
+        $company = $company_service->editCompany($params);
 
-//        return response()->json([
-//            'company_id' => $company_id
-//        ]);
-        // return response()->json(Auth::guard()->user());
+        return response()->json($company);
     }
 
     /**
@@ -94,7 +91,16 @@ class CompanyController extends Controller
      */
     public function deleteCompany()
     {
-        echo 'delete company';
-        // return response()->json(Auth::guard()->user());
+//        $params = $request->only(['company_id']);
+//
+        print_r($_GET);
+        exit();
+
+        $company_service = $this->companyService;
+        $company = $company_service->deleteCompany($params);
+
+        print_r($company);
+
+//        return response()->json($company);
     }
 }
