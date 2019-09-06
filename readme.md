@@ -1,3 +1,44 @@
+## Negotiator Application
+
+Welcome to our API !
+
+To make fast development we are using Dingo API, created above Laravel to provide Controllers, FormRequest and Model.
+Also was added the services and repositories concept.
+
+
+- Application:
+    - Install PHP 7.1
+    - Install Composer -> https://getcomposer.org/download/
+    - To prepare composer run: `composer update`
+        - Maybe you need run too: `composer dump-autoload -o`
+    - Start the server: `php artisan serve`
+    - Open postman and access: http://localhost:8000
+        - If don't have postman download in https://www.getpostman.com/downloads/
+        - Import the postman collections, the json file is in tests folder
+- Database:
+    - Firstly, to start download Docker to you can run the database.
+        - Download Suggestion -> https://www.docker.com/products/docker-desktop
+    - Run docker desktop and wait to be ready
+    - Go to database folder in your terminal
+    - To prepare docker environment run: `docker-compose build`
+    - To start docker run: `docker-compose up`
+    - Open browser and access http://localhost:16543
+- Migration:
+    - You need to be had complete the application setup
+    - You need docker running you database 
+    - Run migration using: `php artisan migrate`
+    
+    
+Go to frontend our job here is done ! 
+
+At below is documentation about Laravel and Dingo  
+
+
+
+
+
+
+
 ## Laravel API Boilerplate (JWT Edition) for Laravel 5.6
 
 [![Build Status](https://travis-ci.org/francescomalatesta/laravel-api-boilerplate-jwt.svg?branch=master)](https://travis-ci.org/francescomalatesta/laravel-api-boilerplate-jwt)
@@ -145,6 +186,3 @@ In order to run tests:
 * be sure to have the PDO sqlite extension installed in your environment;
 * run `php vendor/bin/phpunit`;
 
-## Feedback
-
-I currently made this project for personal purposes. I decided to share it here to help anyone with the same needs. If you have any feedback to improve it, feel free to make a suggestion, or open a PR!

@@ -7,9 +7,14 @@ use Dingo\Api\Http\FormRequest;
 
 class CompanyRequest extends FormRequest
 {
+    private $rules = [
+        'name' => 'string'
+    ];
+
     public function rules()
     {
-        return Config::get('form.company.validation_rules');
+        return $this->rules;
+//        return Config::get('form.company.validation_rules');
         // return Config::get('boilerplate.login.validation_rules');
     }
 

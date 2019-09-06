@@ -8,5 +8,7 @@ interface BaseRepositoryContract
 
     public function get(array $where);
 
+    public function first(array $where);
+
     public function update(array $values, array $where);
 }

@@ -20,8 +20,8 @@ $api->version('v1', function (Router $api) {
         $api->group(['prefix' => 'company'], function(Router $api) {
             $api->post('/', 'App\\Api\\V1\\Controllers\\CompanyController@saveCompany');
             $api->get('/', 'App\\Api\\V1\\Controllers\\CompanyController@getCompanies');
-            $api->get('/{uid}', 'App\\Api\\V1\\Controllers\\CompanyController@getCompany');
-            $api->put('/', 'App\\Api\\V1\\Controllers\\CompanyController@editCompany');
+            $api->get('/{company_id}', 'App\\Api\\V1\\Controllers\\CompanyController@getCompany');
+            $api->put('/{company_id}', 'App\\Api\\V1\\Controllers\\CompanyController@editCompany');
             $api->delete('/{uid}', 'App\\Api\\V1\\Controllers\\CompanyController@deleteCompany');
         });
     });

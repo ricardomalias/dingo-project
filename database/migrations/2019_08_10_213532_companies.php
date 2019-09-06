@@ -14,11 +14,10 @@ class Companies extends Migration
     public function up()
     {
         Schema::create('company', function (Blueprint $table) {
-           $table->bigIncrements('company_id');
+           $table->uuid('company_id')->primary();
            $table->string('name', 255);
            $table->timestamps();
-           $table->addColumn('tinyInteger', 'status', ['lenght' => 1, 'default' => '1']);
-           // $table->tinyInteger('status');
+           $table->addColumn('tinyInteger', 'status', ['length' => 1, 'default' => '1']);
        });
     }
 

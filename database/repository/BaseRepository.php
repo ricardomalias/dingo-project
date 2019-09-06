@@ -2,6 +2,7 @@
 
 namespace Core\Repository;
 
+use App\Repository\BaseRepositoryContract;
 
 abstract class BaseRepository implements BaseRepositoryContract
 {
@@ -9,38 +10,47 @@ abstract class BaseRepository implements BaseRepositoryContract
     protected $searcher;
 
     /**
-     * @var fields to select
+     * @var $select_model
+     * fields to select
      */
     protected $select_model;
 
     /**
-     * @var fields to insert
+     * @var $required
+     * fields to insert
      */
     protected $required;
 
     /**
-     * @var number of items per page
+     * @var $perPage
+     * number of items per page
      */
     protected $perPage = 20;
 
     /**
-     * @var set pagination
+     * @var $pagination
+     * pagination
      */
-    public $pagination = true;
+    public $pagination = false;
 
     /**
-     * @var set ignore empty fields to return
+     * @var $ignoreEmptyFields
+     * set ignore empty fields to return
      */
     protected $ignoreEmptyFields = false;
 
     /**
-     * @var set order
+     * @var $orderBy
+     * set order
      */
-    protected $orderBy;
+    protected $orderBy = [
+        'field' => 'created_at',
+        'sort' => 'asc'
+    ];
 
     function __construct()
     {
-        $this->utils = new \Core\Utils();
+//        $this->utils = new \Core\Utils();
 
         if(empty($this->searcher) && empty($this->model))
         {
@@ -59,9 +69,9 @@ abstract class BaseRepository implements BaseRepositoryContract
 
     public function save(array $values)
     {
-        if (!empty($this->required))
+//        if (!empty($this->required))
         {
-            $model = new $this->model();
+            $m = new $this->model();
 
             foreach ($this->required as $field)
             {
@@ -75,24 +85,22 @@ abstract class BaseRepository implements BaseRepositoryContract
             {
                 if (array_key_exists($field, $values))
                 {
-                    $model->$field = $values[$field];
+                    $m->$field = $values[$field];
                 }
             }
 
-            if ($model->save())
+            if ($m->save())
             {
                 return true;
             }
-
-            return false;
         }
 
-        return null;
+        return false;
     }
 
     public function update(array $values, array $where)
     {
-        if (!empty($this->required))
+//        if (!empty($this->required))
         {
             foreach ($values as $field => $value)
             {
@@ -102,35 +110,30 @@ abstract class BaseRepository implements BaseRepositoryContract
                 }
             }
 
-            $model = (new $this->model())
+            $m = (new $this->model())
                 ->where($where)
                 ->first();
 
-            if (empty($model))
+            if (!empty($m))
             {
-                return false;
-            }
-
-            foreach ($this->required as $field)
-            {
-                if (array_key_exists($field, $values))
-                {
-                    $model->$field = $values[$field];
+                foreach ($this->required as $field) {
+                    if (array_key_exists($field, $values)) {
+                        $m->$field = $values[$field];
+                    }
                 }
-            }
 
-            if ($model->save())
-            {
-                return true;
+                return (bool)$m->save();
             }
-
-            return false;
         }
 
-        return null;
+        return false;
     }
 
-    public function get(array $where)
+    public function first(array $where = []) {
+        return $this->get($where)[0];
+    }
+
+    public function get(array $where = [])
     {
         $response = array();
 
@@ -151,27 +154,27 @@ abstract class BaseRepository implements BaseRepositoryContract
     {
         $response = array();
 
-        $searcher = new $this->searcher;
+        $s = new $this->searcher;
 
         foreach ($where as $key => $value)
         {
             if(!empty($value))
             {
-                $searcher->where($key, $value);
+                $s->where($key, $value);
             }
         }
 
         if(!empty($this->orderBy))
         {
-            $searcher->orderBy($this->orderBy);
+            $s->orderBy($this->orderBy);
         }
 
         if($this->pagination === true)
         {
-            $searcher->limit($this->perPage)->paginate();
+            $s->limit($this->perPage)->paginate();
         }
 
-        $result = $searcher->get();
+        $result = $s->get();
 
         if($this->pagination === true)
         {
@@ -192,9 +195,9 @@ abstract class BaseRepository implements BaseRepositoryContract
         $model = new $this->model;
         $select = $this->select_model;
 
-        $model = $model->select(array_keys($this->select_model));
-
-        $where = $this->utils->withFields(array_flip($select), $where, true);
+        if($this->select_model) {
+            $model = $model->select(array_keys($this->select_model));
+        }
 
         foreach ($where as $key => $value)
         {
@@ -210,11 +213,11 @@ abstract class BaseRepository implements BaseRepositoryContract
 
         if(!empty($this->orderBy) && array_key_exists('field', $this->orderBy) && array_key_exists('sort', $this->orderBy))
         {
-            $model->orderBy($this->orderBy['field'], $this->orderBy['sort']);
+            $model = $model->orderBy($this->orderBy['field'], $this->orderBy['sort']);
         }
         else if(!empty($this->orderBy) && array_key_exists(0, $this->orderBy) && array_key_exists(1, $this->orderBy))
         {
-            $model->orderBy($this->orderBy[0], $this->orderBy[1]);
+            $model = $model->orderBy($this->orderBy[0], $this->orderBy[1]);
         }
 
         if($this->pagination === true)
@@ -229,7 +232,7 @@ abstract class BaseRepository implements BaseRepositoryContract
 
         foreach ($result as $value)
         {
-            $response[] = $this->utils->withFields($select, $value->toArray(), $this->ignoreEmptyFields);
+            $response[] = $value->toArray();
         }
 
         return $response;

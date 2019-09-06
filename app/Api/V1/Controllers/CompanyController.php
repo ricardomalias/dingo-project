@@ -2,6 +2,9 @@
 
 namespace App\Api\V1\Controllers;
 
+use App\Api\V1\Requests\CompanyEditRequest;
+use App\Api\V1\Requests\CompanySaveRequest;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tymon\JWTAuth\JWTAuth;
 use App\Http\Controllers\Controller;
@@ -34,7 +37,7 @@ class CompanyController extends Controller
     public function getCompanies()
     {
         $company_service = $this->companyService;
-        $companies = $company_service->getCompany();
+        $companies = $company_service->getCompanies();
 
         return response()->api($companies);
     }
@@ -44,12 +47,12 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getCompany()
+    public function getCompany($company_id)
     {
         $company_service = $this->companyService;
-        $companies = $company_service->getCompany();
+        $companies = $company_service->getCompany($company_id);
 
-        return response()->api($companies);
+        return response()->json($companies);
     }
 
     /**
@@ -57,7 +60,7 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function saveCompany(CompanyRequest $request)
+    public function saveCompany(CompanySaveRequest $request)
     {
         $params = $request->only(['name']);
 
@@ -74,9 +77,10 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function editCompany(CompanyRequest $request)
+    public function editCompany(CompanyEditRequest $request)
     {
-        $params = $request->only(['name', 'company_id']);
+        $params = $request->only(['name', 'document']);
+        $params = array_merge($params, ['company_id' => $request->company_id]);
 
         $company_service = $this->companyService;
         $company = $company_service->editCompany($params);
