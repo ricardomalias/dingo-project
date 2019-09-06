@@ -43,6 +43,18 @@ class CompanyRepository extends BaseRepository {
 
         return null;
     }
+
+    public function deleteCompany(string $company_id) {
+        $company_model = new $this->model();
+
+        $company_model = $company_model->where(array(
+            'company_id' => $company_id
+        ));
+
+        if($company_model->count()) {
+            return $company_model->delete();
+        }
+    }
 }
 
 

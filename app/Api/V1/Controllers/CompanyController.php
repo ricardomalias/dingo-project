@@ -93,18 +93,12 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deleteCompany()
+    public function deleteCompany($company_id)
     {
-//        $params = $request->only(['company_id']);
-//
-        print_r($_GET);
-        exit();
 
         $company_service = $this->companyService;
-        $company = $company_service->deleteCompany($params);
+        $company_service->deleteCompany($company_id);
 
-        print_r($company);
-
-//        return response()->json($company);
+        return response()->noContent();
     }
 }

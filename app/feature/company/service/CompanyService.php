@@ -44,17 +44,11 @@ class CompanyService {
         return $company;
     }
 
-    public function deleteCompany($data) {
+    public function deleteCompany(string $company_id) {
+        $company_repository = $this->companyRepository;
 
-        $company_model = new Company();
+        $company = $company_repository->deleteCompany($company_id);
 
-        $company_model = $company_model->where(array(
-            'company_id' => $data['company_id']
-        ));
-
-        if($company_model->count()) {
-
-            return $company_model->delete();
-        }
+        return $company;
     }
 }
