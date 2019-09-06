@@ -3,6 +3,7 @@
 namespace Core\Repository;
 
 use App\Repository\BaseRepositoryContract;
+use Illuminate\Support\Str;
 
 abstract class BaseRepository implements BaseRepositoryContract
 {
@@ -69,30 +70,22 @@ abstract class BaseRepository implements BaseRepositoryContract
 
     public function save(array $values)
     {
-//        if (!empty($this->required))
+        $m = new $this->model();
+        $primaryKey = $m->primaryKey;
+
+        $m->{$primaryKey} = (string) Str::uuid();
+
+        foreach ($m->casts as $field => $value)
         {
-            $m = new $this->model();
-
-            foreach ($this->required as $field)
+            if (array_key_exists($field, $values))
             {
-                if (!array_key_exists($field, $values))
-                {
-                    return false;
-                }
+                $m->{$field} = $values[$field];
             }
+        }
 
-            foreach ($this->required as $field)
-            {
-                if (array_key_exists($field, $values))
-                {
-                    $m->$field = $values[$field];
-                }
-            }
-
-            if ($m->save())
-            {
-                return true;
-            }
+        if ($m->save())
+        {
+            return true;
         }
 
         return false;
@@ -100,30 +93,27 @@ abstract class BaseRepository implements BaseRepositoryContract
 
     public function update(array $values, array $where)
     {
-//        if (!empty($this->required))
+        foreach ($values as $field => $value)
         {
-            foreach ($values as $field => $value)
+            if (!in_array($field, $this->required))
             {
-                if (!in_array($field, $this->required))
-                {
-                    return false;
+                return false;
+            }
+        }
+
+        $m = (new $this->model())
+            ->where($where)
+            ->first();
+
+        if (!empty($m))
+        {
+            foreach ($this->required as $field) {
+                if (array_key_exists($field, $values)) {
+                    $m->$field = $values[$field];
                 }
             }
 
-            $m = (new $this->model())
-                ->where($where)
-                ->first();
-
-            if (!empty($m))
-            {
-                foreach ($this->required as $field) {
-                    if (array_key_exists($field, $values)) {
-                        $m->$field = $values[$field];
-                    }
-                }
-
-                return (bool)$m->save();
-            }
+            return (bool)$m->save();
         }
 
         return false;

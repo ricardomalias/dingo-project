@@ -16,9 +16,9 @@ class CompanyEditRequest extends FormRequest
     {
         return [
             'name' => 'string',
-            'document' => 'array',
-            'document.*.type' => 'string',
-            'document.*.value' => 'string|min:18|max:18',
+            'documents' => 'array',
+            'documents.*.type' => 'string',
+            'documents.*.value' => 'string|min:18|max:18',
         ];
     }
 }

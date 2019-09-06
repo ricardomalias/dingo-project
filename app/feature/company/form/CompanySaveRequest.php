@@ -16,9 +16,9 @@ class CompanySaveRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'document' => 'required|array',
-            'document.*.type' => 'required|string',
-            'document.*.value' => 'required|string|min:18|max:18',
+            'documents' => 'required|array',
+            'documents.*.type' => 'required|string',
+            'documents.*.value' => 'required|string|min:18|max:18',
         ];
     }
 }

@@ -62,7 +62,7 @@ class CompanyController extends Controller
      */
     public function saveCompany(CompanySaveRequest $request)
     {
-        $params = $request->only(['name']);
+        $params = $request->only(['name', 'documents']);
 
         $company_service = $this->companyService;
         $company_id = $company_service->saveCompany($params);
