@@ -29,7 +29,7 @@ class CompanyService {
             ->map(function ($company) use ($company_document_service) {
                 $company_document_service->company_id = $company['company_id'];
 
-                $company['documents'] = $company_document_service->getCompanyDocument();
+                $company['documents'] = $company_document_service->getCompanyDocuments();
                 return $company;
             });
     }
@@ -44,7 +44,7 @@ class CompanyService {
             'company_id' => $company_id
         ]);
 
-        $company['documents'] = $company_document_service->getCompanyDocument();
+        $company['documents'] = $company_document_service->getCompanyDocuments();
 
         return $company;
     }
@@ -63,18 +63,28 @@ class CompanyService {
     }
 
     public function editCompany($data) {
+        $company_document_service = $this->companyDocumentService;
+        $company_document_service->company_id = $data['company_id'];
+
         $company_repository = $this->companyRepository;
 
         $company = $company_repository->editCompany($data);
+        $company_document_service->editCompanyDocument($data['documents']);
 
         return $company;
     }
 
     public function deleteCompany(string $company_id) {
         $company_repository = $this->companyRepository;
+        $company_document_service = $this->companyDocumentService;
+        $company_document_service->company_id = $company_id;
 
-        $company = $company_repository->deleteCompany($company_id);
+        $documents = $company_document_service->getCompanyDocuments();
 
-        return $company;
+        if(!empty($documents)) {
+            $company_document_service->deleteCompanyDocuments($documents);
+        }
+
+        return $company_repository->deleteCompany($company_id);
     }
 }

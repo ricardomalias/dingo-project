@@ -228,4 +228,17 @@ abstract class BaseRepository implements BaseRepositoryContract
         return $response;
     }
 
+    public function delete(array $where)
+    {
+        $model = (new $this->model())
+            ->where($where);
+
+        if ($model->count() == 1)
+        {
+            return (bool)$model->delete();;
+        }
+
+        return false;
+    }
+
 }

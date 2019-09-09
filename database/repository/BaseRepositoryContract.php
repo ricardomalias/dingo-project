@@ -11,4 +11,6 @@ interface BaseRepositoryContract
     public function first(array $where);
 
     public function update(array $values, array $where);
+
+    public function delete(array $where);
 }

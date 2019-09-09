@@ -79,7 +79,7 @@ class CompanyController extends Controller
      */
     public function editCompany(CompanyEditRequest $request)
     {
-        $params = $request->only(['name', 'document']);
+        $params = $request->only(['name', 'documents']);
         $params = array_merge($params, ['company_id' => $request->company_id]);
 
         $company_service = $this->companyService;
