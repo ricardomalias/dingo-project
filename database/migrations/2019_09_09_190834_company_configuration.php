@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CompanyDocument extends Migration
+class CompanyConfiguration extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CompanyDocument extends Migration
      */
     public function up()
     {
-        Schema::create('company_document', function (Blueprint $table) {
-            $table->uuid('company_document_id')->primary();
+        Schema::create('company_configuration', function (Blueprint $table) {
+            $table->uuid('company_configuration_id')->primary();
             $table->uuid('company_id');
-            $table->string('type', 255);
+            $table->string('key', 255);
             $table->string('value', 255);
             $table->timestamps();
             $table->addColumn('tinyInteger', 'status', ['length' => 1, 'default' => '1']);
@@ -30,6 +30,6 @@ class CompanyDocument extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('company_configuration');
     }
 }

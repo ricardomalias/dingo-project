@@ -27,6 +27,7 @@ Also was added the services and repositories concept.
     - You need to be had complete the application setup
     - You need docker running you database 
     - Run migration using: `php artisan migrate`
+    - (Optional) if you will create a new table create that using migration: `php artisan make:migration YOUR_MIGRATION_NAME --create=TABLE_NAME`
     
     
 Go to frontend our job here is done ! 

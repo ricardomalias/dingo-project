@@ -16,13 +16,18 @@ $api->version('v1', function (Router $api) {
         $api->post('logout', 'App\\Api\\V1\\Controllers\\LogoutController@logout');
         $api->post('refresh', 'App\\Api\\V1\\Controllers\\RefreshController@refresh');
         $api->get('me', 'App\\Api\\V1\\Controllers\\UserController@me');
+    });
 
-        $api->group(['prefix' => 'company'], function(Router $api) {
-            $api->post('/', 'App\\Api\\V1\\Controllers\\CompanyController@saveCompany');
-            $api->get('/', 'App\\Api\\V1\\Controllers\\CompanyController@getCompanies');
-            $api->get('/{company_id}', 'App\\Api\\V1\\Controllers\\CompanyController@getCompany');
-            $api->put('/{company_id}', 'App\\Api\\V1\\Controllers\\CompanyController@editCompany');
-            $api->delete('/{company_id}', 'App\\Api\\V1\\Controllers\\CompanyController@deleteCompany');
+    $api->group(['prefix' => 'company'], function(Router $api) {
+        $api->post('/', 'App\\Api\\V1\\Controllers\\CompanyController@saveCompany');
+        $api->get('/', 'App\\Api\\V1\\Controllers\\CompanyController@getCompanies');
+        $api->get('/{company_id}', 'App\\Api\\V1\\Controllers\\CompanyController@getCompany');
+        $api->put('/{company_id}', 'App\\Api\\V1\\Controllers\\CompanyController@editCompany');
+        $api->delete('/{company_id}', 'App\\Api\\V1\\Controllers\\CompanyController@deleteCompany');
+
+        $api->group(['prefix' => '{company_id}/configuration'], function(Router $api) {
+            $api->get('/', 'App\\feature\\company\\controller\\CompanyConfigurationController@getCompanyConfigurations');
+            $api->put('/', 'App\\feature\\company\\controller\\CompanyConfigurationController@editCompanyConfiguration');
         });
     });
 
