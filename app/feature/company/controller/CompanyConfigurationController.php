@@ -5,7 +5,7 @@ namespace App\feature\company\controller;
 use App\Http\Controllers\Controller;
 use App\feature\company\service\CompanyConfigurationService;
 use App\feature\company\repository\CompanyConfigurationRequest;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyConfigurationController extends Controller
 {
@@ -27,9 +27,10 @@ class CompanyConfigurationController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getCompanyConfigurations()
+    public function getCompanyConfigurations($company_id)
     {
         $company_configuration_service = $this->companyConfigurationService;
+        $company_configuration_service->company_id = $company_id;
         $configurations = $company_configuration_service->getCompanyConfigurations();
 
         return response()->api($configurations);
@@ -40,14 +41,15 @@ class CompanyConfigurationController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function editCompany(CompanyConfigurationRequest $request)
+    public function editCompanyConfiguration(CompanyConfigurationRequest $request)
     {
         $params = $request->only(['configurations']);
-        $params = array_merge($params, ['company_id' => $request->company_id]);
 
-        $company_service = $this->companyConfigurationService;
-        $company = $company_service->editCompanyConfiguration($params);
+        $company_configuration_service = $this->companyConfigurationService;
+        $company_configuration_service->company_id = $request->company_id;
 
-        return response()->json($company);
+        $configuration = $company_configuration_service->editCompanyConfiguration($params['configurations']);
+
+        return response()->json($configuration);
     }
 }

@@ -4,6 +4,7 @@ namespace Core\Repository;
 
 use App\Repository\BaseRepositoryContract;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 abstract class BaseRepository implements BaseRepositoryContract
 {
@@ -51,11 +52,10 @@ abstract class BaseRepository implements BaseRepositoryContract
 
     function __construct()
     {
-//        $this->utils = new \Core\Utils();
 
         if(empty($this->searcher) && empty($this->model))
         {
-            throw new BadRequestException(__('system.check_repository'));
+            throw new HttpException("412");
         }
     }
 
@@ -93,9 +93,11 @@ abstract class BaseRepository implements BaseRepositoryContract
 
     public function update(array $values, array $where)
     {
+        $m = new $this->model();
+
         foreach ($values as $field => $value)
         {
-            if (!in_array($field, $this->required))
+            if (!array_key_exists($field, $m->casts))
             {
                 return false;
             }
@@ -107,9 +109,9 @@ abstract class BaseRepository implements BaseRepositoryContract
 
         if (!empty($m))
         {
-            foreach ($this->required as $field) {
+            foreach ($m->casts as $field => $value) {
                 if (array_key_exists($field, $values)) {
-                    $m->$field = $values[$field];
+                    $m->{$field} = $values[$field];
                 }
             }
 
