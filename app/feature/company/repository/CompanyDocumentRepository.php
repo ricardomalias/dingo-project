@@ -8,4 +8,6 @@ use Core\Repository\BaseRepository;
 class CompanyDocumentRepository extends BaseRepository
 {
     protected $model = CompanyDocument::class;
+
+    public $pagination = false;
 }

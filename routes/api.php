@@ -19,16 +19,24 @@ $api->version('v1', function (Router $api) {
     });
 
     $api->group(['prefix' => 'company'], function(Router $api) {
-        $api->post('/', 'App\\Api\\V1\\Controllers\\CompanyController@saveCompany');
-        $api->get('/', 'App\\Api\\V1\\Controllers\\CompanyController@getCompanies');
-        $api->get('/{company_id}', 'App\\Api\\V1\\Controllers\\CompanyController@getCompany');
-        $api->put('/{company_id}', 'App\\Api\\V1\\Controllers\\CompanyController@editCompany');
-        $api->delete('/{company_id}', 'App\\Api\\V1\\Controllers\\CompanyController@deleteCompany');
+        $api->post('/', 'App\\feature\\company\\controller\\CompanyController@saveCompany');
+        $api->get('/', 'App\\feature\\company\\controller\\CompanyController@getCompanies');
+        $api->get('/{company_id}', 'App\\feature\\company\\controller\\CompanyController@getCompany');
+        $api->put('/{company_id}', 'App\\feature\\company\\controller\\CompanyController@editCompany');
+        $api->delete('/{company_id}', 'App\\feature\\company\\controller\\CompanyController@deleteCompany');
 
         $api->group(['prefix' => '{company_id}/configuration'], function(Router $api) {
             $api->get('/', 'App\\feature\\company\\controller\\CompanyConfigurationController@getCompanyConfigurations');
             $api->put('/', 'App\\feature\\company\\controller\\CompanyConfigurationController@editCompanyConfiguration');
         });
+    });
+
+    $api->group(['prefix' => 'customer'], function(Router $api) {
+        $api->post('/', 'App\\feature\\customer\\controller\\CustomerController@saveCustomer');
+        $api->get('/', 'App\\feature\\customer\\controller\\CustomerController@getCustomers');
+        $api->get('/{customer_id}', 'App\\feature\\customer\\controller\\CustomerController@getCustomer');
+        $api->put('/{customer_id}', 'App\\feature\\customer\\controller\\CustomerController@editCustomer');
+        $api->delete('/{customer_id}', 'App\\feature\\customer\\controller\\CustomerController@deleteCustomer');
     });
 
     $api->group(['middleware' => 'jwt.auth'], function(Router $api) {

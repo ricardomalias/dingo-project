@@ -21,6 +21,12 @@ class ResponseServiceProvider extends ServiceProvider
                 'data' => $data
             ];
 
+            if(Pagination::$responseWithPagination
+                && !array_key_exists('links', $customFormat))
+            {
+                $customFormat['links'] = Pagination::hydratePagination();
+            }
+
             return $factory->make($customFormat);
         });
     }

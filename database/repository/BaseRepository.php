@@ -3,7 +3,9 @@
 namespace Core\Repository;
 
 use App\Repository\BaseRepositoryContract;
+use Illuminate\Pagination\PaginationServiceProvider;
 use Illuminate\Support\Str;
+use App\Providers\Pagination;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 abstract class BaseRepository implements BaseRepositoryContract
@@ -33,13 +35,7 @@ abstract class BaseRepository implements BaseRepositoryContract
      * @var $pagination
      * pagination
      */
-    public $pagination = false;
-
-    /**
-     * @var $ignoreEmptyFields
-     * set ignore empty fields to return
-     */
-    protected $ignoreEmptyFields = false;
+    public $pagination = true;
 
     /**
      * @var $orderBy
@@ -214,7 +210,6 @@ abstract class BaseRepository implements BaseRepositoryContract
 
         if($this->pagination === true)
         {
-            Pagination::$forcePagination = true;
             $result = Pagination::make($model, $this->perPage);
         }
         else

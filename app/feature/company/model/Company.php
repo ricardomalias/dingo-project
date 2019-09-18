@@ -3,6 +3,7 @@
 namespace App\feature;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Company extends Model
 {
@@ -15,4 +16,23 @@ class Company extends Model
         'update_date' => 'string',
         'status' => 'integer'
     );
+
+	protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($item) {
+            $item->{$item->primaryKey} = (string) Str::uuid();
+        });
+    }
+
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    public function getKeyType()
+    {
+        return 'string';
+    }
 }

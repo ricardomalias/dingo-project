@@ -1,20 +1,14 @@
 <?php
 
-namespace App\Api\V1\Controllers;
+namespace App\feature\customer\controller;
 
 use App\Api\V1\Requests\CompanyEditRequest;
 use App\Api\V1\Requests\CompanySaveRequest;
-use Illuminate\Support\Str;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Tymon\JWTAuth\JWTAuth;
-use App\Http\Controllers\Controller;
-use App\Api\V1\Requests\CompanyRequest;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use App\Feature\Service\Company\CompanyService;
+use App\Http\Controllers\Controller;
 use Auth;
 
-class CompanyController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Create a new AuthController instance.
