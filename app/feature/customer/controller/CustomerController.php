@@ -4,7 +4,7 @@ namespace App\feature\customer\controller;
 
 use App\Api\V1\Requests\CompanyEditRequest;
 use App\Api\V1\Requests\CompanySaveRequest;
-use App\Feature\Service\Company\CompanyService;
+use App\feature\customer\service\CustomerService;
 use App\Http\Controllers\Controller;
 use Auth;
 
@@ -15,12 +15,12 @@ class CustomerController extends Controller
      *
      * @return void
      */
-    private $companyService;
+    private $customerService;
 
     public function __construct()
     {
         $this->middleware('jwt.auth', []);
-        $this->companyService = new CompanyService();
+        $this->customerService = new CustomerService();
     }
 
     /**
@@ -28,12 +28,12 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getCompanies()
+    public function getCustomers()
     {
-        $company_service = $this->companyService;
-        $companies = $company_service->getCompanies();
+        $customer_service = $this->customerService;
+        $customers = $customer_service->getCustomers();
 
-        return response()->api($companies);
+        return response()->api($customers);
     }
 
     /**
@@ -41,12 +41,12 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getCompany($company_id)
+    public function getCustomer($company_id)
     {
-        $company_service = $this->companyService;
-        $companies = $company_service->getCompany($company_id);
+        $customer_service = $this->customerService;
+        $curtomer = $customer_service->getCompany($company_id);
 
-        return response()->json($companies);
+        return response()->json($curtomer);
     }
 
     /**
@@ -54,15 +54,15 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function saveCompany(CompanySaveRequest $request)
+    public function saveCustomer(CustomerSaveRequest $request)
     {
         $params = $request->only(['name', 'documents']);
 
-        $company_service = $this->companyService;
-        $company_id = $company_service->saveCompany($params);
+        $customer_service = $this->customerService;
+        $customer_id = $customer_service->saveCustomer($params);
 
         return response()->json([
-            'company_id' => $company_id
+            'customer_id' => $customer_id
         ]);
     }
 
@@ -71,13 +71,13 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function editCompany(CompanyEditRequest $request)
+    public function editCustomer(CustomerEditRequest $request)
     {
         $params = $request->only(['name', 'documents']);
-        $params = array_merge($params, ['company_id' => $request->company_id]);
+        $params = array_merge($params, ['customer_id' => $request->customer_id]);
 
-        $company_service = $this->companyService;
-        $company = $company_service->editCompany($params);
+        $customer_service = $this->customerService;
+        $company = $customer_service->editCustomer($params);
 
         return response()->json($company);
     }
@@ -87,11 +87,11 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deleteCompany($company_id)
+    public function deleteCustomer($customer_id)
     {
 
-        $company_service = $this->companyService;
-        $company_service->deleteCompany($company_id);
+        $customer_service = $this->customerService;
+        $customer_service->deleteCustomer($customer_id);
 
         return response()->noContent();
     }
