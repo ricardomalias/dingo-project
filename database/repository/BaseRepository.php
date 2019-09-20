@@ -3,6 +3,7 @@
 namespace Core\Repository;
 
 use App\Repository\BaseRepositoryContract;
+use Exception;
 use Illuminate\Pagination\PaginationServiceProvider;
 use Illuminate\Support\Str;
 use App\Providers\Pagination;
@@ -59,7 +60,7 @@ abstract class BaseRepository implements BaseRepositoryContract
     {
         try{
             return new $this->searcher();
-        } catch(\Exception $e) {
+        } catch(Exception $e) {
             return false;
         }
     }
@@ -81,7 +82,7 @@ abstract class BaseRepository implements BaseRepositoryContract
 
         if ($m->save())
         {
-            return true;
+            return $m->{$m->primaryKey};
         }
 
         return false;
@@ -142,7 +143,7 @@ abstract class BaseRepository implements BaseRepositoryContract
     {
         $response = array();
 
-        $s = new $this->searcher;
+        $s = new $this->searcher();
 
         foreach ($where as $key => $value)
         {
@@ -180,7 +181,7 @@ abstract class BaseRepository implements BaseRepositoryContract
     {
         $response = array();
 
-        $model = new $this->model;
+        $model = new $this->model();
         $select = $this->select_model;
 
         if($this->select_model) {
@@ -199,11 +200,17 @@ abstract class BaseRepository implements BaseRepositoryContract
             }
         }
 
-        if(!empty($this->orderBy) && array_key_exists('field', $this->orderBy) && array_key_exists('sort', $this->orderBy))
+        if(!empty($this->orderBy)
+            && array_key_exists('field', $this->orderBy)
+            && array_key_exists('sort', $this->orderBy))
         {
+
             $model = $model->orderBy($this->orderBy['field'], $this->orderBy['sort']);
         }
-        else if(!empty($this->orderBy) && array_key_exists(0, $this->orderBy) && array_key_exists(1, $this->orderBy))
+
+        if(!empty($this->orderBy)
+            && array_key_exists(0, $this->orderBy)
+            && array_key_exists(1, $this->orderBy))
         {
             $model = $model->orderBy($this->orderBy[0], $this->orderBy[1]);
         }
@@ -232,7 +239,7 @@ abstract class BaseRepository implements BaseRepositoryContract
 
         if ($model->count() == 1)
         {
-            return (bool)$model->delete();;
+            return (bool)$model->delete();
         }
 
         return false;

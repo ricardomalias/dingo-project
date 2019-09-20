@@ -3,17 +3,19 @@
 
 namespace App\feature\customer\model;
 
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use App\feature\customer\model\CustomerAddress as CustomerAddress;
 
-class Customer extends Model
+class CustomerDocument extends Model
 {
-    protected $table = 'customer';
-    public $primaryKey = 'customer_id';
+    protected $table = 'customer_document';
+    public $primaryKey = 'customer_document_id';
     public $casts = array(
+        'customer_document_id' => 'string',
         'customer_id' => 'string',
-        'name' => 'string',
+        'type' => 'string',
+        'value' => 'string',
         'create_date' => 'string',
         'update_date' => 'string',
         'status' => 'integer'
@@ -36,13 +38,5 @@ class Customer extends Model
     public function getKeyType()
     {
         return 'string';
-    }
-
-    public function addresses() {
-        return $this->hasMany(CustomerAddress::class, "customer_id", "customer_id");
-    }
-
-    public function documents() {
-        return $this->hasMany(CustomerDocument::class, "customer_id", "customer_id");
     }
 }

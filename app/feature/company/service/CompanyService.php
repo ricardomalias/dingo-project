@@ -4,10 +4,7 @@ namespace App\Feature\Service\Company;
 
 use App\feature\company\service\CompanyDocumentService;
 use App\Feature\Repository\CompanyRepository;
-use App\Providers\ResponseServiceProvider;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\ServiceProvider;
-use function foo\func;
 
 class CompanyService extends ServiceProvider {
 

@@ -28,7 +28,7 @@ class CompanyDocumentService
     public function saveCompanyDocument(array $documents) {
         $company_document_repository = $this->companyDocumentRepository;
 
-        collect($documents)->map(function ($document) use ($company_document_repository) {
+        return collect($documents)->map(function ($document) use ($company_document_repository) {
             $document['company_id'] = $this->company_id;
             $company_document_repository->save($document);
         });

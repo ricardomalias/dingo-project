@@ -4,9 +4,12 @@ namespace App\feature\customer\controller;
 
 use App\Api\V1\Requests\CompanyEditRequest;
 use App\Api\V1\Requests\CompanySaveRequest;
+use App\feature\customer\form\CustomerEditRequest;
+use App\feature\customer\form\CustomerSaveRequest;
 use App\feature\customer\service\CustomerService;
 use App\Http\Controllers\Controller;
 use Auth;
+use Illuminate\Http\JsonResponse;
 
 class CustomerController extends Controller
 {
@@ -26,7 +29,7 @@ class CustomerController extends Controller
     /**
      * Get companies
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function getCustomers()
     {
@@ -39,9 +42,10 @@ class CustomerController extends Controller
     /**
      * Get company
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @param string $company_id
+     * @return JsonResponse
      */
-    public function getCustomer($company_id)
+    public function getCustomer(string $company_id)
     {
         $customer_service = $this->customerService;
         $curtomer = $customer_service->getCompany($company_id);
@@ -52,11 +56,12 @@ class CustomerController extends Controller
     /**
      * Save company
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @param CustomerSaveRequest $request
+     * @return JsonResponse
      */
     public function saveCustomer(CustomerSaveRequest $request)
     {
-        $params = $request->only(['name', 'documents']);
+        $params = $request->only(['name', 'documents', 'addresses']);
 
         $customer_service = $this->customerService;
         $customer_id = $customer_service->saveCustomer($params);
@@ -69,27 +74,29 @@ class CustomerController extends Controller
     /**
      * Edit company
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @param CustomerEditRequest $request
+     * @return JsonResponse
      */
     public function editCustomer(CustomerEditRequest $request)
     {
-        $params = $request->only(['name', 'documents']);
+        $params = $request->only(['name', 'documents', 'addresses']);
         $params = array_merge($params, ['customer_id' => $request->customer_id]);
 
         $customer_service = $this->customerService;
-        $company = $customer_service->editCustomer($params);
+        $customer_service->customer_id = $request->customer_id;
+        $customer = $customer_service->editCustomer($params);
 
-        return response()->json($company);
+        return response()->json($customer);
     }
 
     /**
      * Delete company
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @param string $customer_id
+     * @return JsonResponse
      */
-    public function deleteCustomer($customer_id)
+    public function deleteCustomer(string $customer_id)
     {
-
         $customer_service = $this->customerService;
         $customer_service->deleteCustomer($customer_id);
 

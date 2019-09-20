@@ -12,7 +12,6 @@ class CompanyRepository extends BaseRepository {
 
     public function saveCompany(array $data) {
         $company_model = new $this->model();
-//        $company_model->company_id = (String) Str::uuid();
         $company_model->name = $data['name'];
         $company_model->status = 1;
 
