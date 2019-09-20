@@ -13,4 +13,11 @@ return array(
             'default' => "#006fbe",
         ]
     ),
+    'finance' => array(
+        'interest' => [
+            'minlength' => "1",
+            'maxlength' => "5",
+            'default' => "0.033",
+        ],
+    ),
 );
