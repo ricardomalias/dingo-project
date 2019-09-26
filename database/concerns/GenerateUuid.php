@@ -8,8 +8,10 @@ trait GenerateUuid
 {
     protected static function bootUsesUuid()
     {
+        parent::boot();
+
         static::creating(function ($model) {
-            if (!$model->primaryKey) {
+            if (!$model->{$model->primaryKey}) {
                 $model->{$model->primaryKey} = (string) Str::uuid();
             }
         });

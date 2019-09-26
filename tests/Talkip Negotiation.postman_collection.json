@@ -35,7 +35,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/api/auth/company/",
+							"raw": "http://localhost:8000/api/company/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -43,7 +43,6 @@
 							"port": "8000",
 							"path": [
 								"api",
-								"auth",
 								"company",
 								""
 							]
@@ -80,7 +79,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/api/auth/company/2b59feaa-3d1b-4ca5-80ae-86560f12ff79",
+							"raw": "http://localhost:8000/api/company/b60633d4-cca5-4f35-896a-6ba326c88dd3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -88,9 +87,8 @@
 							"port": "8000",
 							"path": [
 								"api",
-								"auth",
 								"company",
-								"2b59feaa-3d1b-4ca5-80ae-86560f12ff79"
+								"b60633d4-cca5-4f35-896a-6ba326c88dd3"
 							]
 						}
 					},
@@ -130,10 +128,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Anderson Corporation LTDA\",\n\t\"document\": [\n\t\t{\n\t\t\t\"type\": \"cnpj\",\n\t\t\t\"value\": \"24.697.666/0001-66\"\n\t\t}\n\t]\n}"
+							"raw": "{\n\t\"name\": \"Fuxirico Corporation LTDA\",\n\t\"documents\": [\n\t\t{\n\t\t\t\"type\": \"cnpj\",\n\t\t\t\"value\": \"24.697.666/0001-66\"\n\t\t}\n\t]\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/auth/company/",
+							"raw": "http://localhost:8000/api/company/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -141,7 +139,6 @@
 							"port": "8000",
 							"path": [
 								"api",
-								"auth",
 								"company",
 								""
 							]
@@ -184,10 +181,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Chernobyl byl !\",\n}"
+							"raw": "{\n\t\"name\": \"Geroudo Corp\",\n\t\"documents\": [\n\t\t{\n\t\t\t\"type\": \"cnpj\",\n\t\t\t\"value\": \"24.697.666/0001-66\"\n\t\t}\n\t]\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/auth/company/2b59feaa-3d1b-4ca5-80ae-86560f12ff79",
+							"raw": "http://localhost:8000/api/company/b3f4ef5b-5f51-4d28-8903-b6dab4672ce9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -195,9 +192,8 @@
 							"port": "8000",
 							"path": [
 								"api",
-								"auth",
 								"company",
-								"2b59feaa-3d1b-4ca5-80ae-86560f12ff79"
+								"b3f4ef5b-5f51-4d28-8903-b6dab4672ce9"
 							]
 						}
 					},
@@ -227,10 +223,16 @@
 								"key": "Authorization",
 								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE1NjUxMjEzNjksImV4cCI6MTU2NTEyNDk2OSwibmJmIjoxNTY1MTIxMzY5LCJqdGkiOiJkRWxDY2RFZ052MElxd0ZFIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.ZOojo38zC6iaq4xPIAYa4xhr0p8cjV7Co7taNDbAWvw",
 								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/api/auth/company/",
+							"raw": "http://localhost:8000/api/company/4f6a2832-e55e-4d77-9916-84f9073cfe79",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -238,8 +240,111 @@
 							"port": "8000",
 							"path": [
 								"api",
-								"auth",
 								"company",
+								"4f6a2832-e55e-4d77-9916-84f9073cfe79"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company Configuration",
+			"item": [
+				{
+					"name": "Company Configurations list",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE1NjUxMjEzNjksImV4cCI6MTU2NTEyNDk2OSwibmJmIjoxNTY1MTIxMzY5LCJqdGkiOiJkRWxDY2RFZ052MElxd0ZFIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.ZOojo38zC6iaq4xPIAYa4xhr0p8cjV7Co7taNDbAWvw"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/company/529fa39e-9af1-4af1-88f9-45963751332e/configuration/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"company",
+								"529fa39e-9af1-4af1-88f9-45963751332e",
+								"configuration",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company Configuration Edit",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE1NjUxMjEzNjksImV4cCI6MTU2NTEyNDk2OSwibmJmIjoxNTY1MTIxMzY5LCJqdGkiOiJkRWxDY2RFZ052MElxd0ZFIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.ZOojo38zC6iaq4xPIAYa4xhr0p8cjV7Co7taNDbAWvw",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"configurations\": [\n\t\t{\n\t\t\t\"key\": \"primary_color\",\n\t\t\t\"value\": \"#000000\"\n\t\t},\n\t\t{\n\t\t\t\"key\": \"secondary_color\",\n\t\t\t\"value\": \"#ffffff\"\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/company/529fa39e-9af1-4af1-88f9-45963751332e/configuration/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"company",
+								"529fa39e-9af1-4af1-88f9-45963751332e",
+								"configuration",
 								""
 							]
 						}
@@ -247,6 +352,431 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Customer list",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/customer/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Save",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE1NjUxMjEzNjksImV4cCI6MTU2NTEyNDk2OSwibmJmIjoxNTY1MTIxMzY5LCJqdGkiOiJkRWxDY2RFZ052MElxd0ZFIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.ZOojo38zC6iaq4xPIAYa4xhr0p8cjV7Co7taNDbAWvw",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Geroudinho Geroudoso\",\n\t\"documents\": [\n\t\t{\n\t\t\t\"type\": \"CPF\",\n\t\t\t\"value\": \"123.456.789-00\"\n\t\t}\n\t],\n\t\"addresses\": [\n\t\t{\n\t\t\t\"zip_code\": \"08557-700\",\n\t\t\t\"address\": \"Rua Geroudo\",\n\t\t\t\"number\": \"214\",\n\t\t\t\"city\": \"São Paulo\",\n\t\t\t\"state\": \"SP\",\n\t\t\t\"country\": \"Ruelândia\"\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/customer/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Edit",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE1NjUxMjEzNjksImV4cCI6MTU2NTEyNDk2OSwibmJmIjoxNTY1MTIxMzY5LCJqdGkiOiJkRWxDY2RFZ052MElxd0ZFIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.ZOojo38zC6iaq4xPIAYa4xhr0p8cjV7Co7taNDbAWvw",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Abidul Abelardo da Silva\",\n\t\"documents\": [\n\t\t{\n\t\t\t\"type\": \"CPF\",\n\t\t\t\"value\": \"123.456.789-00\"\n\t\t}\n\t],\n\t\"addresses\": [\n\t\t{\n\t\t\t\"zip_code\": \"08557-700\",\n\t\t\t\"address\": \"Rua Geroudo\",\n\t\t\t\"number\": \"214\",\n\t\t\t\"city\": \"São Paulo\",\n\t\t\t\"state\": \"SP\",\n\t\t\t\"country\": \"Ruelândia\"\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/customer/8eccc779-1fdd-411a-b4dd-e39e5c3f6a9e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"customer",
+								"8eccc779-1fdd-411a-b4dd-e39e5c3f6a9e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Delete",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE1NjUxMjEzNjksImV4cCI6MTU2NTEyNDk2OSwibmJmIjoxNTY1MTIxMzY5LCJqdGkiOiJkRWxDY2RFZ052MElxd0ZFIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.ZOojo38zC6iaq4xPIAYa4xhr0p8cjV7Co7taNDbAWvw",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/customer/99fe1d99-e591-4183-b3b6-3a01c62fd5eb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"customer",
+								"99fe1d99-e591-4183-b3b6-3a01c62fd5eb"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Debt",
+			"item": [
+				{
+					"name": "Debt list",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/debt/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"debt",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Debt get",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/debt/a80984a0-4ac6-4fe7-ab57-47ac8af58d72",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"debt",
+								"a80984a0-4ac6-4fe7-ab57-47ac8af58d72"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Debt Save",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE1NjUxMjEzNjksImV4cCI6MTU2NTEyNDk2OSwibmJmIjoxNTY1MTIxMzY5LCJqdGkiOiJkRWxDY2RFZ052MElxd0ZFIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.ZOojo38zC6iaq4xPIAYa4xhr0p8cjV7Co7taNDbAWvw",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company_id\": \"529fa39e-9af1-4af1-88f9-45963751332e\",\n\t\"amount\": 1050.50,\n\t\"parcel_quantity\": 10,\n\t\"due_date\": \"2019-10-01\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/debt/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"debt",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Debt Edit",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE1NjUxMjEzNjksImV4cCI6MTU2NTEyNDk2OSwibmJmIjoxNTY1MTIxMzY5LCJqdGkiOiJkRWxDY2RFZ052MElxd0ZFIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.ZOojo38zC6iaq4xPIAYa4xhr0p8cjV7Co7taNDbAWvw",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company_id\": \"529fa39e-9af1-4af1-88f9-45963751332e\",\n\t\"amount\": 500.00,\n\t\"parcel_quantity\": 1,\n\t\"due_date\": \"2019-10-01\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/debt/2058e728-7240-4c11-b478-3abb6860edb8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"debt",
+								"2058e728-7240-4c11-b478-3abb6860edb8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Debt delete",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/debt/a80984a0-4ac6-4fe7-ab57-47ac8af58d72",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"debt",
+								"a80984a0-4ac6-4fe7-ab57-47ac8af58d72"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "User",

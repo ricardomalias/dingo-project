@@ -2,11 +2,13 @@
 
 namespace App\feature;
 
+use App\database\concerns\GenerateUuid;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class Company extends Model
 {
+    use GenerateUuid;
+
     protected $table = 'company';
 	protected $primaryKey = 'company_id';
 	protected $casts = array(
@@ -19,20 +21,6 @@ class Company extends Model
 
 	protected static function boot()
     {
-        parent::boot();
-
-        static::creating(function ($item) {
-            $item->{$item->primaryKey} = (string) Str::uuid();
-        });
-    }
-
-    public function getIncrementing()
-    {
-        return false;
-    }
-
-    public function getKeyType()
-    {
-        return 'string';
+        self::bootUsesUuid();
     }
 }
