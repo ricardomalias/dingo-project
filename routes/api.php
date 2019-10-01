@@ -15,7 +15,12 @@ $api->version('v1', function (Router $api) {
 
         $api->post('logout', 'App\\Api\\V1\\Controllers\\LogoutController@logout');
         $api->post('refresh', 'App\\Api\\V1\\Controllers\\RefreshController@refresh');
-        $api->get('me', 'App\\Api\\V1\\Controllers\\UserController@me');
+    });
+
+    $api->group(['prefix' => 'user'], function (Router $api) {
+        $api->get('/me', 'App\\feature\\user\\controllers\\UserController@me');
+        $api->get('/{id}', 'App\\feature\\user\\controllers\\UserController@getUser');
+        $api->post('/company/{company_id}', 'App\\feature\\user\\controllers\\UserController@saveUser');
     });
 
     $api->group(['prefix' => 'company'], function(Router $api) {

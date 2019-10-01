@@ -8,7 +8,7 @@ use App\feature\debt\form\DebtEditRequest;
 use App\feature\debt\form\DebtSaveRequest;
 use App\feature\debt\service\DebtService;
 use App\Providers\BaseControllerProvider;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class DebtController extends BaseControllerProvider
 {
@@ -50,12 +50,12 @@ class DebtController extends BaseControllerProvider
         $debt = $debt_service->getDebt();
 
         return response()->json($debt);
-//        return response()->paginator($companies);\
     }
 
     /**
      * Save debt
      *
+     * @param DebtSaveRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function saveDebt(DebtSaveRequest $request)
@@ -89,7 +89,7 @@ class DebtController extends BaseControllerProvider
     /**
      * Delete debt
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function deleteDebt($debt_id)
     {

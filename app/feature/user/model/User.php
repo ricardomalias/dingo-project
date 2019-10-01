@@ -1,8 +1,10 @@
 <?php
 
-namespace App;
+namespace App\feature\user\model;
 
-use Hash;
+use App\database\concerns\GenerateUuid;
+use App\feature\Company;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -10,6 +12,24 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    use GenerateUuid;
+
+    protected $table = 'users';
+    public $primaryKey = 'user_id';
+    public $keyType = "string";
+    public $incrementing = false;
+    public $casts = array(
+        'user_id' => 'string',
+        'name' => 'string',
+        'email' => 'string',
+        'created_at' => 'string',
+        'updated_at' => 'string'
+    );
+
+    protected static function boot()
+    {
+        self::bootUsesUuid();
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -59,4 +79,20 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function userCompany()
+    {
+        return $this->hasMany(UserCompany::class, "user_company_id", "user_id");
+    }
+
+    public function company()
+    {
+        return $this->hasManyThrough(Company::class, UserCompany::class,  "user_id", "company_id", "user_id", "company_id");
+//        return $this->belongsTo(UserCompany::class, "user_id", "user_id");
+//        return $this->morphMany(UserCompany::class, "user");
+    }
+
+//    public function company() {
+//        return $this->hasMany(UserCompany::class, "user_company_id", "user_id");
+//    }
 }

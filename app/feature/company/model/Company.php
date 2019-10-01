@@ -10,8 +10,8 @@ class Company extends Model
     use GenerateUuid;
 
     protected $table = 'company';
-	protected $primaryKey = 'company_id';
-	protected $casts = array(
+	public $primaryKey = 'company_id';
+    public $casts = array(
         'company_id' => 'string',
         'name' => 'string',
         'create_date' => 'string',

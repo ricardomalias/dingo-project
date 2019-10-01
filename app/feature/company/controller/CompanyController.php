@@ -7,7 +7,7 @@ use App\Api\V1\Requests\CompanySaveRequest;
 use App\Http\Controllers\Controller;
 use App\Feature\Service\Company\CompanyService;
 use App\Providers\BaseControllerProvider;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use http\Env\Response;
 
 class CompanyController extends BaseControllerProvider

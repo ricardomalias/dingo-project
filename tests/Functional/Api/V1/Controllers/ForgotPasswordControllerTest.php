@@ -2,7 +2,7 @@
 
 namespace App\Functional\Api\V1\Controllers;
 
-use App\User;
+use App\feature\user\model\User;
 use App\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
