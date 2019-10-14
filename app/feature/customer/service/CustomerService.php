@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\feature\customer\service;
 
 
@@ -9,6 +8,7 @@ use App\feature\customer\repository\CustomerRepository;
 class CustomerService
 {
     public $customer_id;
+    public $company_id;
 
     private $customerRepository;
 
@@ -25,8 +25,11 @@ class CustomerService
 
     public function getCustomers() {
         $customer_repository = $this->customerRepository;
+        $data = [
+            'company_id' => $this->company_id
+        ];
 
-        return $customer_repository->getCustomers();
+        return $customer_repository->getCustomers($data);
     }
 
     public function saveCustomer(array $data) {

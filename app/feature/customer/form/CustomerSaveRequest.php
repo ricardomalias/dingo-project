@@ -15,6 +15,7 @@ class CustomerSaveRequest extends FormRequest
     public function rules()
     {
         return [
+            'company_id' => 'required|string',
             'name' => 'required|string',
             'documents' => 'required|array',
             'documents.*.type' => 'required|string',

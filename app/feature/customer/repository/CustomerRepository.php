@@ -11,11 +11,12 @@ class CustomerRepository extends BaseRepository
 {
     protected $model = Customer::class;
 
-    public function getCustomers() {
+    public function getCustomers(array $data) {
         $model = new $this->model();
 
         $model = $model->with("addresses")
             ->with("documents")
+            ->where('company_id', '=', $data['company_id'])
             ->orderBy('created_at', 'asc');
 
         if($this->pagination === true)

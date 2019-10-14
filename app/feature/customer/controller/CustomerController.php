@@ -31,9 +31,10 @@ class CustomerController extends Controller
      *
      * @return JsonResponse
      */
-    public function getCustomers()
+    public function getCustomers($company_id)
     {
         $customer_service = $this->customerService;
+        $customer_service->company_id = $company_id;
         $customers = $customer_service->getCustomers();
 
         return response()->api($customers);
@@ -61,7 +62,7 @@ class CustomerController extends Controller
      */
     public function saveCustomer(CustomerSaveRequest $request)
     {
-        $params = $request->only(['name', 'documents', 'addresses']);
+        $params = $request->only(['company_id', 'name', 'documents', 'addresses']);
 
         $customer_service = $this->customerService;
         $customer_id = $customer_service->saveCustomer($params);

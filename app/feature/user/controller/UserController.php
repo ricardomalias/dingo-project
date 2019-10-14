@@ -33,6 +33,17 @@ class UserController extends Controller
      *
      * @return JsonResponse
      */
+    /**
+     * @SWG\Get(
+     *   path="/user/me",
+     *   summary="Get user logged",
+     *   operationId="",
+     *   @SWG\Response(response=200, description="successful operation"),
+     *   @SWG\Response(response=406, description="not acceptable"),
+     *   @SWG\Response(response=500, description="internal server error")
+     * )
+     *
+     */
     public function me()
     {
         return response()->json(Auth::guard()->user());

@@ -15,6 +15,7 @@ class Customer extends Migration
     {
         Schema::create('customer', function (Blueprint $table) {
             $table->uuid('customer_id')->primary();
+            $table->uuid('company_id');
             $table->string('name', 255);
             $table->timestamps();
             $table->addColumn('tinyInteger', 'status', ['length' => 1, 'default' => '1']);

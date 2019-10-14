@@ -13,6 +13,7 @@ class Customer extends Model
     public $primaryKey = 'customer_id';
     public $casts = array(
         'customer_id' => 'string',
+        'company_id' => 'string',
         'name' => 'string',
         'create_date' => 'string',
         'update_date' => 'string',

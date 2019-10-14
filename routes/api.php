@@ -38,7 +38,7 @@ $api->version('v1', function (Router $api) {
 
     $api->group(['prefix' => 'customer'], function(Router $api) {
         $api->post('/', 'App\\feature\\customer\\controller\\CustomerController@saveCustomer');
-        $api->get('/', 'App\\feature\\customer\\controller\\CustomerController@getCustomers');
+        $api->get('/{company_id}', 'App\\feature\\customer\\controller\\CustomerController@getCustomers');
         $api->get('/{customer_id}', 'App\\feature\\customer\\controller\\CustomerController@getCustomer');
         $api->put('/{customer_id}', 'App\\feature\\customer\\controller\\CustomerController@editCustomer');
         $api->delete('/{customer_id}', 'App\\feature\\customer\\controller\\CustomerController@deleteCustomer');
