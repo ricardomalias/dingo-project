@@ -40,8 +40,7 @@ class UserRepository extends BaseRepository
         $user_model = new $this->model();
         $user_model->name = $values['name'];
         $user_model->email = $values['email'];
-        $user_model->password = Hash::make($values['password']);
-//        $user_model->status = 1;
+        $user_model->password = $values['password'];
 
         if($user_model->save())
         {
