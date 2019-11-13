@@ -27,7 +27,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Get companies
+     * Get customers
      *
      * @return JsonResponse
      */
@@ -41,21 +41,21 @@ class CustomerController extends Controller
     }
 
     /**
-     * Get company
+     * Get customer
      *
-     * @param string $company_id
+     * @param string $customer_id
      * @return JsonResponse
      */
-    public function getCustomer(string $company_id)
+    public function getCustomer(string $customer_id)
     {
         $customer_service = $this->customerService;
-        $curtomer = $customer_service->getCompany($company_id);
+        $customer = $customer_service->getCustomer($customer_id);
 
-        return response()->json($curtomer);
+        return response()->json($customer);
     }
 
     /**
-     * Save company
+     * Save customer
      *
      * @param CustomerSaveRequest $request
      * @return JsonResponse
@@ -73,7 +73,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Edit company
+     * Edit customer
      *
      * @param CustomerEditRequest $request
      * @return JsonResponse
@@ -91,7 +91,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Delete company
+     * Delete customer
      *
      * @param string $customer_id
      * @return JsonResponse

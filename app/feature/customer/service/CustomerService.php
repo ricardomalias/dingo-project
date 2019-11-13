@@ -23,6 +23,15 @@ class CustomerService
         $this->customerDocumentService = new CustomerDocumentService();
     }
 
+    public function getCustomer(string $customer_id) {
+        $customer_repository = $this->customerRepository;
+        $data = [
+            'customer_id' => $customer_id
+        ];
+
+        return $customer_repository->getCustomer($data);
+    }
+
     public function getCustomers() {
         $customer_repository = $this->customerRepository;
         $data = [
