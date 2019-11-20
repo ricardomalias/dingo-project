@@ -95,7 +95,7 @@ class CustomerService
         $documents = $customer_document_service->getCustomerDocuments();
 
         if(!empty($addresses)) {
-            $customer_address_service->deleteCustomerAddresses($documents);
+            $customer_address_service->deleteCustomerAddresses($addresses);
         }
 
         if(!empty($documents)) {
