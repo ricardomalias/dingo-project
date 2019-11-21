@@ -16,6 +16,7 @@ class DebtRepository extends BaseRepository
         $model = new $this->model();
 
         $model = $model->with("situation")
+            ->with("discount")
             ->where('customer_id', '=', $data['customer_id'])
             ->where('status', '=', 1)
             ->orderBy('created_at', 'asc');
@@ -35,7 +36,8 @@ class DebtRepository extends BaseRepository
     public function getDebt(array $data) {
         $model = new $this->model();
 
-        return $model->with("situation")
+        return $model->with("discount")
+            ->with("discount")
             ->where('debt_id', '=', $data['debt_id'])
             ->orderBy('created_at', 'asc')
             ->first();

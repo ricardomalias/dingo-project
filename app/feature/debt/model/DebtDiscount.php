@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\feature\debt\model;
 
 
@@ -18,7 +17,7 @@ class DebtDiscount extends Model
         'debt_id' => 'string',
         'due_date' => 'date',
         'type' => 'string',
-        'value' => 'decimal',
+        'value' => 'float',
         'create_date' => 'string',
         'update_date' => 'string',
         'status' => 'integer'

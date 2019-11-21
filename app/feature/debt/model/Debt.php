@@ -30,4 +30,9 @@ class Debt extends Model
         return $this->hasOne(DebtSituation::class, "debt_id", "debt_id")
             ->where("debt_situation.status", "=", "1");
     }
+
+    public function discount() {
+        return $this->hasMany(DebtDiscount::class, "debt_id", "debt_id")
+            ->where("debt_discount.status", "=", "1");
+    }
 }
