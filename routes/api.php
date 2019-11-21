@@ -47,7 +47,7 @@ $api->version('v1', function (Router $api) {
 
     $api->group(['prefix' => 'debt'], function(Router $api) {
         $api->post('/', 'App\\feature\\debt\\controller\\DebtController@saveDebt');
-        $api->get('/', 'App\\feature\\debt\\controller\\DebtController@getDebts');
+        $api->get('/customer/{customer_id}', 'App\\feature\\debt\\controller\\DebtController@getDebts');
         $api->get('/{debt_id}', 'App\\feature\\debt\\controller\\DebtController@getDebt');
         $api->put('/{debt_id}', 'App\\feature\\debt\\controller\\DebtController@editDebt');
         $api->delete('/{debt_id}', 'App\\feature\\debt\\controller\\DebtController@deleteDebt');

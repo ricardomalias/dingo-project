@@ -118,7 +118,10 @@ abstract class BaseRepository implements BaseRepositoryContract
         return false;
     }
 
-    public function first(array $where = []) {
+    public function first(array $where) {
+        $where = array_merge($where, ['status' => 1]);
+        var_dump($where);
+        exit();
         return $this->get($where)[0];
     }
 
@@ -179,6 +182,7 @@ abstract class BaseRepository implements BaseRepositoryContract
 
     private function getModel(array $where)
     {
+        $where = array_merge($where, ['status' => 1]);
         $response = array();
 
         $model = new $this->model();
@@ -237,12 +241,9 @@ abstract class BaseRepository implements BaseRepositoryContract
         $model = (new $this->model())
             ->where($where);
 
-        if ($model->count() == 1)
-        {
-            return (bool)$model->delete();
-        }
-
-        return false;
+        return (bool)$model->update([
+            'status' => 0
+        ]);
     }
 
 }

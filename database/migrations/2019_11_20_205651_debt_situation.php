@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Debt extends Migration
+class DebtSituation extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class Debt extends Migration
      */
     public function up()
     {
-        Schema::create('debt', function (Blueprint $table) {
-            $table->uuid('debt_id')->primary();
-            $table->string('customer_id', 255);
-            $table->float('amount', 10, 2);
-            $table->integer('parcel_quantity', 0);
+        Schema::create('debt_situation', function (Blueprint $table) {
+            $table->uuid('debt_situation_id')->primary();
+            $table->string('debt_id', 255);
+            $table->enum('situation', ['PENDING', 'ACCEPTED', 'EXPIRED'])->default('PENDING');
             $table->timestamps();
             $table->addColumn('tinyInteger', 'status', ['length' => 1, 'default' => '1']);
         });
@@ -30,6 +29,6 @@ class Debt extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('debt');
+        Schema::dropIfExists('debt_situation');
     }
 }

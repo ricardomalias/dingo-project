@@ -1,21 +1,22 @@
 <?php
 
+
 namespace App\feature\debt\model;
+
 
 use App\database\concerns\GenerateUuid;
 use Illuminate\Database\Eloquent\Model;
 
-class Debt extends Model
+class DebtSituation extends Model
 {
     use GenerateUuid;
 
-    protected $table = 'debt';
-    public $primaryKey = 'debt_id';
+    protected $table = 'debt_situation';
+    public $primaryKey = 'debt_situation_id';
     public $casts = array(
+        'debt_situation_id' => 'string',
         'debt_id' => 'string',
-        'customer_id' => 'string',
-        'amount' => 'float',
-        'parcel_quantity' => 'integer',
+        'situation' => 'string',
         'create_date' => 'string',
         'update_date' => 'string',
         'status' => 'integer'
@@ -24,10 +25,5 @@ class Debt extends Model
     protected static function boot()
     {
         self::bootUsesUuid();
-    }
-
-    public function situation() {
-        return $this->hasOne(DebtSituation::class, "debt_id", "debt_id")
-            ->where("debt_situation.status", "=", "1");
     }
 }

@@ -16,7 +16,8 @@ class DebtEditRequest extends FormRequest
         return [
             'amount' => 'numeric|min:0',
             'parcel_quantity' => 'integer|min:0',
-            'due_date' => 'date'
+            'discounts' => 'array',
+            'situation' => 'string'
         ];
     }
 }

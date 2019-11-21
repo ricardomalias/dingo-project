@@ -11,16 +11,6 @@ class CustomerRepository extends BaseRepository
 {
     protected $model = Customer::class;
 
-    public function getCustomer(array $data) {
-        $model = new $this->model();
-
-        return $model->with("addresses")
-            ->with("documents")
-            ->where('customer_id', '=', $data['customer_id'])
-            ->orderBy('created_at', 'asc')
-            ->first();
-    }
-
     public function getCustomers(array $data) {
         $model = new $this->model();
 
@@ -39,5 +29,15 @@ class CustomerRepository extends BaseRepository
         }
 
         return $result;
+    }
+
+    public function getCustomer(array $data) {
+        $model = new $this->model();
+
+        return $model->with("addresses")
+            ->with("documents")
+            ->where('customer_id', '=', $data['customer_id'])
+            ->orderBy('created_at', 'asc')
+            ->first();
     }
 }

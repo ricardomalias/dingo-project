@@ -30,9 +30,10 @@ class DebtController extends BaseControllerProvider
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getDebts()
+    public function getDebts($customer_id)
     {
         $debt_service = $this->debtService;
+        $debt_service->customer_id = $customer_id;
         $debts = $debt_service->getDebts();
 
         return response()->api($debts);
@@ -60,7 +61,12 @@ class DebtController extends BaseControllerProvider
      */
     public function saveDebt(DebtSaveRequest $request)
     {
-        $params = $request->only(['company_id', 'amount', 'parcel_quantity', 'due_date']);
+        $params = $request->only([
+            'customer_id',
+            'amount',
+            'parcel_quantity',
+            'discounts'
+        ]);
 
         $debt_service = $this->debtService;
         $debt_id = $debt_service->saveDebt($params);
@@ -77,7 +83,12 @@ class DebtController extends BaseControllerProvider
      */
     public function editDebt(DebtEditRequest $request)
     {
-        $params = $request->only(['amount', 'parcel_quantity', 'due_date']);
+        $params = $request->only([
+            'amount',
+            'parcel_quantity',
+            'situation',
+            'discounts'
+        ]);
 
         $debt_service = $this->debtService;
         $debt_service->debt_id = $request->debt_id;
@@ -95,7 +106,8 @@ class DebtController extends BaseControllerProvider
     {
 
         $debt_service = $this->debtService;
-        $debt_service->deleteDebt($debt_id);
+        $debt_service->debt_id = $debt_id;
+        $debt_service->deleteDebt();
 
         return response()->noContent();
     }
