@@ -4,6 +4,7 @@
 namespace App\feature\debt\controller;
 
 
+use App\feature\customer\service\CustomerService;
 use App\feature\debt\form\DebtEditRequest;
 use App\feature\debt\form\DebtSaveRequest;
 use App\feature\debt\service\DebtService;
@@ -26,15 +27,32 @@ class DebtController extends BaseControllerProvider
     }
 
     /**
-     * Get companies
+     * Get debts
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getDebts($customer_id)
+    public function getCompanyDebts($company_id)
+    {
+        $customer_service = new CustomerService();
+        $customer_service->company_id = $company_id;
+
+        $debt_service = $this->debtService;
+        $debt_service->setCustomerService($customer_service);
+        $debts = $debt_service->getCompanyDebts($company_id);
+
+        return response()->api($debts);
+    }
+
+    /**
+     * Get customer debts
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCustomerDebts($customer_id)
     {
         $debt_service = $this->debtService;
         $debt_service->customer_id = $customer_id;
-        $debts = $debt_service->getDebts();
+        $debts = $debt_service->getCustomerDebts();
 
         return response()->api($debts);
     }

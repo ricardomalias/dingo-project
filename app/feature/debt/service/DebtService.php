@@ -4,13 +4,17 @@
 namespace App\feature\debt\service;
 
 
+use App\feature\customer\service\CustomerService;
 use App\feature\debt\repository\DebtRepository;
+use App\Providers\Pagination;
 
 class DebtService
 {
     private $debtRepository;
     private $debtSituationService;
     private $debtDiscountService;
+
+    private $customerService;
 
     public $customer_id;
     public $debt_id;
@@ -22,7 +26,36 @@ class DebtService
         $this->debtDiscountService = new DebtDiscountService();
     }
 
-    public function getDebts() {
+    public function setCustomerService(CustomerService $customerService) {
+        $this->customerService = $customerService;
+    }
+
+    private function getCustomerService() {
+        return $this->customerService;
+    }
+
+    public function getCompanyDebts($company_id) {
+        $debt_repository = $this->debtRepository;
+        $customer_service = $this->getCustomerService();
+
+        return $debt_repository->getCompanyDebts(['company_id' => $company_id]);
+
+//        $customers = $customer_service->getCustomers();
+//        $debts = collect($customers)
+//            ->flatMap(function ($customer) use ($debt_repository) {
+//                $debts = $debt_repository->getDebts([
+//                    'customer_id' => $customer->customer_id
+//                ]);
+//
+//                return collect($debts)
+//                    ->map(function ($debt) use ($customer) {
+//                        $debt['customer'] = $customer;
+//                        return $debt;
+//                    });
+//            });
+    }
+
+    public function getCustomerDebts() {
         $debt_repository = $this->debtRepository;
 
         return $debt_repository->getDebts([

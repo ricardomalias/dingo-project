@@ -3,6 +3,7 @@
 namespace App\feature\debt\model;
 
 use App\database\concerns\GenerateUuid;
+use App\feature\customer\model\Customer;
 use Illuminate\Database\Eloquent\Model;
 
 class Debt extends Model
