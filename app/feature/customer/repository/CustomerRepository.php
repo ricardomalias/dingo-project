@@ -17,6 +17,7 @@ class CustomerRepository extends BaseRepository
         $model = $model->with("addresses")
             ->with("documents")
             ->where('company_id', '=', $data['company_id'])
+            ->where('status', '=', 1)
             ->orderBy('created_at', 'asc');
 
         if($this->pagination === true)

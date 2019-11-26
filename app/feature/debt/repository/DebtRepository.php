@@ -53,6 +53,7 @@ class DebtRepository extends BaseRepository
         $model = new $this->model();
 
         $model = $model
+            ->select("debt.debt_id", "debt.customer_id", "debt.amount", "debt.parcel_quantity", "debt.created_at", "debt.updated_at", "debt.status", "customer.name")
             ->join('customer', function ($join) {
                 $join->on(DB::raw("debt.customer_id::VARCHAR"), '=', DB::raw("customer.customer_id::VARCHAR"));
             })
