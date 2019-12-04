@@ -38,8 +38,8 @@ class DebtRepository extends BaseRepository
     public function getDebt(array $data) {
         $model = new $this->model();
 
-        return $model->with("discount")
-            ->with("discount")
+        return $model->with("discounts")
+            ->with("discounts")
             ->where('debt_id', '=', $data['debt_id'])
             ->orderBy('created_at', 'asc')
             ->first();

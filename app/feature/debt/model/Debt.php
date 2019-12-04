@@ -32,7 +32,7 @@ class Debt extends Model
             ->where("debt_situation.status", "=", "1");
     }
 
-    public function discount() {
+    public function discounts() {
         return $this->hasMany(DebtDiscount::class, "debt_id", "debt_id")
             ->where("debt_discount.status", "=", "1");
     }

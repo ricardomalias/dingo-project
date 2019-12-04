@@ -100,16 +100,20 @@ class DebtService
             'debt_id' => $this->debt_id
         ]);
 
-        $debt_situation_service->debt_id = $this->debt_id;
-        $debt_situation_service->editDebtSituation($data['situation']);
+        if(!empty($data['situation'])) {
+            $debt_situation_service->debt_id = $this->debt_id;
+            $debt_situation_service->editDebtSituation($data['situation']);
+        }
 
-        $debt_discount_service->debt_id = $this->debt_id;
-        $debt_discount_service->deleteDebtDiscount();
+        if(!empty($data['discounts'])) {
+            $debt_discount_service->debt_id = $this->debt_id;
+            $debt_discount_service->deleteDebtDiscount();
 
-        collect($data['discounts'])
-            ->map(function ($discount) use ($debt_discount_service) {
-                $debt_discount_service->saveDebtDiscount($discount);
-            });
+            collect($data['discounts'])
+                ->map(function ($discount) use ($debt_discount_service) {
+                    $debt_discount_service->saveDebtDiscount($discount);
+                });
+        }
 
         return $this->getDebt();
     }
