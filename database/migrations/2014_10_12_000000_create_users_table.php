@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -22,6 +23,16 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        // Insert some stuff
+        DB::table('users')->insert(
+            array(
+                'user_id' => '99a88809-0317-4691-9301-dcf99cb8c0a1',
+                'name' => 'Anderson Marin',
+                'email' => 'anderson.marin@talkip.com.br',
+                'password' => '$2y$10$2lYQdbU83MOfVEbCH3TcAulEZ08OzU0ndhI6WPz5nJeiP2LZUwPqK',
+            )
+        );
     }
 
     /**
