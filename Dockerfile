@@ -53,8 +53,6 @@ USER www
 EXPOSE 9000
 CMD ["php-fpm"]
 
-RUN docker-compose exec app php artisan:fresh --seed
-
 # Run project database migrations
 #FROM library/postgres
 #ENV POSTGRES_USER postgres
