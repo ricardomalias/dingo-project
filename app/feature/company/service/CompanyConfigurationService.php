@@ -17,11 +17,6 @@ class CompanyConfigurationService
     public function __construct() {
         $this->companyConfigurationRepository = new CompanyConfigurationRepository();
         $this->companyConfigurationTranslate = include 'CompanyConfigurationTranslation.php';
-
-        /**
-         * create the default configurations so ever exist some configuration
-         */
-        $this->createDefault();
     }
 
     private function createDefault() {
@@ -58,6 +53,11 @@ class CompanyConfigurationService
 
     public function getCompanyConfigurations() {
         $company_configuration_repository = $this->companyConfigurationRepository;
+
+        /**
+         * create the default configurations so ever exist some configuration
+         */
+        $this->createDefault();
 
         return $company_configuration_repository->get();
     }

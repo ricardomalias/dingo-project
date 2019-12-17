@@ -4,6 +4,7 @@
 namespace App\feature\debt\controller;
 
 
+use App\feature\company\service\CompanyConfigurationService;
 use App\feature\customer\service\CustomerService;
 use App\feature\debt\form\DebtEditRequest;
 use App\feature\debt\form\DebtSaveRequest;
@@ -22,10 +23,13 @@ class DebtPublicController extends BaseControllerProvider
 
     private $customerService;
 
+    private $companyConfigurationService;
+
     public function __construct()
     {
         $this->debtService = new DebtService();
         $this->customerService = new CustomerService();
+        $this->companyConfigurationService = new CompanyConfigurationService();
     }
 
     /**
@@ -36,6 +40,7 @@ class DebtPublicController extends BaseControllerProvider
     public function getDebt($debt_id)
     {
         $customer = [];
+        $company_configurations = [];
 
         $debt_service = $this->debtService;
         $debt_service->debt_id = $debt_id;
@@ -44,13 +49,17 @@ class DebtPublicController extends BaseControllerProvider
 
         if(!empty($debt)) {
             $customer_service = $this->customerService;
+            $company_configuration_service = $this->companyConfigurationService;
 
             $customer = $customer_service->getCustomer($debt['customer_id']);
+            $company_configuration_service->company_id = $customer['company_id'];
+            $company_configurations = $company_configuration_service->getCompanyConfigurations();
         }
 
         return response()->json([
             'debt' => $debt,
-            'customer' => $customer
+            'customer' => $customer,
+            'configurations' => $company_configurations
         ]);
     }
 }
