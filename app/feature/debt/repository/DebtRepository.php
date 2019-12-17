@@ -39,7 +39,7 @@ class DebtRepository extends BaseRepository
         $model = new $this->model();
 
         return $model->with("discounts")
-            ->with("discounts")
+            ->with("situation")
             ->where('debt_id', '=', $data['debt_id'])
             ->orderBy('created_at', 'asc')
             ->first();

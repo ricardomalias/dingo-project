@@ -20,9 +20,12 @@ class DebtPublicController extends BaseControllerProvider
      */
     private $debtService;
 
+    private $customerService;
+
     public function __construct()
     {
         $this->debtService = new DebtService();
+        $this->customerService = new CustomerService();
     }
 
     /**
@@ -32,10 +35,22 @@ class DebtPublicController extends BaseControllerProvider
      */
     public function getDebt($debt_id)
     {
+        $customer = [];
+
         $debt_service = $this->debtService;
         $debt_service->debt_id = $debt_id;
+
         $debt = $debt_service->getDebt();
 
-        return response()->json($debt);
+        if(!empty($debt)) {
+            $customer_service = $this->customerService;
+
+            $customer = $customer_service->getCustomer($debt['customer_id']);
+        }
+
+        return response()->json([
+            'debt' => $debt,
+            'customer' => $customer
+        ]);
     }
 }
