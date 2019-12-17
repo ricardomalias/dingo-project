@@ -13,7 +13,7 @@ Also was added the services and repositories concept.
         - Maybe you need run too: `composer dump-autoload -o`
     - Start the server: `php artisan serve`
     - Open postman and access: http://localhost:8000
-        - If don't have postman download in https://www.getpostman.com/downloads/
+        - If you don't have postman download in https://www.getpostman.com/downloads/
         - Import the postman collections, the json file is in tests folder
 - Database:
     - Firstly, to start download Docker to you can run the database.

@@ -71,6 +71,8 @@ $api->version('v1', function (Router $api) {
         ]);
     });
 
+    $api->get('public/debt/{debt_id}','App\\feature\\debt\\controller\\DebtPublicController@getDebt');
+
     $api->get('hello', function() {
         return response()->json([
             'message' => 'This is a simple example of item returned by your APIs. Everyone can see it.'
