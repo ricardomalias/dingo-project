@@ -40,6 +40,7 @@ $api->version('v1', function (Router $api) {
         $api->post('/', 'App\\feature\\customer\\controller\\CustomerController@saveCustomer');
 //        $api->get('/', 'App\\feature\\customer\\controller\\CustomerController@getCustomers');
         $api->get('/company/{company_id}', 'App\\feature\\customer\\controller\\CustomerController@getCustomers');
+        $api->get('/company/{company_id}/search/{query}', 'App\\feature\\customer\\controller\\CustomerController@getCustomerSearch');
         $api->get('/{customer_id}', 'App\\feature\\customer\\controller\\CustomerController@getCustomer');
         $api->put('/{customer_id}', 'App\\feature\\customer\\controller\\CustomerController@editCustomer');
         $api->delete('/{customer_id}', 'App\\feature\\customer\\controller\\CustomerController@deleteCustomer');

@@ -32,10 +32,11 @@ class CustomerService
         return $customer_repository->getCustomer($data);
     }
 
-    public function getCustomers() {
+    public function getCustomers(string $query = null) {
         $customer_repository = $this->customerRepository;
         $data = [
-            'company_id' => $this->company_id
+            'company_id' => $this->company_id,
+            'query' => $query
         ];
 
         return $customer_repository->getCustomers($data);

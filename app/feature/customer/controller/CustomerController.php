@@ -41,6 +41,21 @@ class CustomerController extends Controller
     }
 
     /**
+     * Get customer search
+     *
+     * @param string $customer_id
+     * @return JsonResponse
+     */
+    public function getCustomerSearch(string $company_id, string $query)
+    {
+        $customer_service = $this->customerService;
+        $customer_service->company_id = $company_id;
+        $customers = $customer_service->getCustomers($query);
+
+        return response()->api($customers);
+    }
+
+    /**
      * Get customer
      *
      * @param string $customer_id
