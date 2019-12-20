@@ -24,11 +24,17 @@ $api->version('v1', function (Router $api) {
     });
 
     $api->group(['prefix' => 'company'], function(Router $api) {
+
+
         $api->post('/', 'App\\feature\\company\\controller\\CompanyController@saveCompany');
         $api->get('/', 'App\\feature\\company\\controller\\CompanyController@getCompanies');
         $api->get('/{company_id}', 'App\\feature\\company\\controller\\CompanyController@getCompany');
         $api->put('/{company_id}', 'App\\feature\\company\\controller\\CompanyController@editCompany');
         $api->delete('/{company_id}', 'App\\feature\\company\\controller\\CompanyController@deleteCompany');
+
+        $api->group(['prefix' => '/configuration'], function(Router $api) {
+            $api->get('/common', 'App\\feature\\company\\controller\\CompanyConfigurationController@getCompanyConfigurationCommon');
+        });
 
         $api->group(['prefix' => '{company_id}/configuration'], function(Router $api) {
             $api->get('/', 'App\\feature\\company\\controller\\CompanyConfigurationController@getCompanyConfigurations');

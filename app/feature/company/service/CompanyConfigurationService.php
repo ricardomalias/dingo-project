@@ -51,6 +51,23 @@ class CompanyConfigurationService
             ->toArray();
     }
 
+    public function getCompanyConfigurationCommon() {
+        $configuration = $this->companyConfigurationTranslate;
+
+        return collect($configuration)
+            ->map(function($items, $section) {
+                return [
+                    'section' => $section,
+                    'items' => collect($items)
+                        ->map(function ($property, $key) {
+                           return array_merge(['key' => $key], $property);
+                        })
+                        ->values()
+                ];
+            })
+            ->values();
+    }
+
     public function getCompanyConfigurations() {
         $company_configuration_repository = $this->companyConfigurationRepository;
 

@@ -27,6 +27,19 @@ class CompanyConfigurationController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+    public function getCompanyConfigurationCommon()
+    {
+        $company_configuration_service = $this->companyConfigurationService;
+        $configurations = $company_configuration_service->getCompanyConfigurationCommon();
+
+        return response()->api($configurations);
+    }
+
+    /**
+     * Get company configurations
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getCompanyConfigurations($company_id)
     {
         $company_configuration_service = $this->companyConfigurationService;
