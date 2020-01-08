@@ -13,7 +13,6 @@ class CustomerAddressService
     private $customerAddressRepository;
 
     public function __construct() {
-
         $this->customerAddressRepository = new CustomerAddressRepository();
     }
 

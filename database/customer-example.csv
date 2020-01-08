@@ -1,38 +1,6 @@
-name,cpf,zip_code,address,number,city,state,country
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Geroudo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Trajano José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Paçoca José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Danusio José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Asdrubal José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abigoberto José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Jeremias José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Hast José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Die Schilie José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Pkcell José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Lucas José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Mercurio José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Miercoles José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Capitão Boeing José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Joe José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Jericho José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-belardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
-Abelardo José da Silva,235.454.545-54,08557-700,441,Rondolândia do Sul,Acre,Russia Tropical
+name,cpf,zip_code,address,number,city,state,country,amount,parcels,discount_type,discount_amount,discount_due
+Abelardo José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,Russia Tropical,1500.00,6,percent,10,2020-03-01
+Geroudo José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,Russia Tropical
+
 
 

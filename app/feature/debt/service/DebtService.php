@@ -83,10 +83,12 @@ class DebtService
 
         $debt_discount_service->debt_id = $debt_id;
 
-        collect($data['discounts'])
+        if(!empty($data['discounts'])) {
+            collect($data['discounts'])
             ->map(function ($discount) use ($debt_discount_service) {
                 $debt_discount_service->saveDebtDiscount($discount);
             });
+        }
 
         return $debt_id;
     }

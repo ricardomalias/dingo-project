@@ -120,9 +120,13 @@ abstract class BaseRepository implements BaseRepositoryContract
 
     public function first(array $where) {
         $where = array_merge($where, ['status' => 1]);
-        var_dump($where);
-        exit();
-        return $this->get($where)[0];
+        $result = $this->get($where);
+
+        if(!empty($result)) {
+            return $result[0];
+        }
+
+        return [];
     }
 
     public function get(array $where = [])

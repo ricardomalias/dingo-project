@@ -3,7 +3,7 @@
 namespace App\feature\CustomerList\repository;
 
 
-use App\feature\customer\model\Customer;
+use App\feature\CustomerList\model\CustomerList;
 use App\Providers\Pagination;
 use Core\Repository\BaseRepository;
 

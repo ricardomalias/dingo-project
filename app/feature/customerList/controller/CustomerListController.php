@@ -82,9 +82,11 @@ class CustomerListController extends Controller
 
         $customer_list_service = $this->customerListService;
         $customer_list_service->company_id = $company_id;
-        $customer_list_id = $customer_list_service->saveCustomerList($file);
+        $customer_list_id = $customer_list_service->saveCustomerList($file, $params);
 
-        return response()->json($customer_list_id,200);
+        return response()->json([
+            'customer_list_id' => $customer_list_id
+        ], 200);
     }
 
     // /**
