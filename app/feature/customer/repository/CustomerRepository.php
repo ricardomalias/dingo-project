@@ -43,6 +43,7 @@ class CustomerRepository extends BaseRepository
 
         return $model->with("addresses")
             ->with("documents")
+            ->with("lists")
             ->where('customer_id', '=', $data['customer_id'])
             ->orderBy('created_at', 'asc')
             ->first();

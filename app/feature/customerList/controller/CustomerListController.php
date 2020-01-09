@@ -23,48 +23,33 @@ class CustomerListController extends Controller
         $this->customerListService = new CustomerListService();
     }
 
-    // /**
-    //  * Get customers
-    //  *
-    //  * @return JsonResponse
-    //  */
-    // public function getCustomers($company_id)
-    // {
-    //     $customer_service = $this->customerService;
-    //     $customer_service->company_id = $company_id;
-    //     $customers = $customer_service->getCustomers();
+    /**
+     * Get customers
+     *
+     * @return JsonResponse
+     */
+    public function getCustomerLists(string $company_id)
+    {
+        $customer_list_service = $this->customerListService;
+        $customer_list_service->company_id = $company_id;
+        $customer_lists = $customer_list_service->getCustomerLists();
 
-    //     return response()->api($customers);
-    // }
+        return response()->api($customer_lists);
+    }
 
-    // /**
-    //  * Get customer search
-    //  *
-    //  * @param string $customer_id
-    //  * @return JsonResponse
-    //  */
-    // public function getCustomerSearch(string $company_id, string $query)
-    // {
-    //     $customer_service = $this->customerService;
-    //     $customer_service->company_id = $company_id;
-    //     $customers = $customer_service->getCustomers($query);
+    /**
+     * Get customer
+     *
+     * @param string $customer_id
+     * @return JsonResponse
+     */
+    public function getCustomerList(string $company_id, string $customer_list_id)
+    {
+        $customer_list_service = $this->customerListService;
+        $customer_list = $customer_list_service->getCustomerList($customer_list_id);
 
-    //     return response()->api($customers);
-    // }
-
-    // /**
-    //  * Get customer
-    //  *
-    //  * @param string $customer_id
-    //  * @return JsonResponse
-    //  */
-    // public function getCustomer(string $customer_id)
-    // {
-    //     $customer_service = $this->customerService;
-    //     $customer = $customer_service->getCustomer($customer_id);
-
-    //     return response()->json($customer);
-    // }
+        return response()->json($customer_list);
+    }
 
     /**
      * Save customer list
@@ -72,7 +57,7 @@ class CustomerListController extends Controller
      * @param CustomerSaveRequest $request
      * @return JsonResponse
      */
-    public function saveList(CustomerListRequest $request, $company_id)
+    public function saveCustomerList(CustomerListRequest $request, $company_id)
     {
         $params = $request->only(['name']);
         $file = $request->file(['file']);

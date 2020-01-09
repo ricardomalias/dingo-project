@@ -1,6 +1,15 @@
-name,cpf,zip_code,address,number,city,state,country,amount,parcels,discount_type,discount_amount,discount_due
-Abelardo José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,Russia Tropical,1500.00,6,percent,10,2020-03-01
-Geroudo José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,Russia Tropical
+name,cpf,zip_code,address,number,city,state,amount,parcels,discount_type,discount_amount,discount_due
+Abelardo José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,1500.00,6,percent,10,2020-03-01
+Geroudo José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre
+Abidul José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,1500.00,6,percent,10,2020-03-01
+Wisconsin José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,1500.00,6,percent,10,2020-03-01
+Xuxa José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,1500.00,6,percent,10,2020-03-01
+Sei lá José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,1500.00,6,percent,10,2020-03-01
+Matheus José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,1500.00,6,percent,10,2020-03-01
+Anderson José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,1500.00,6,percent,10,2020-03-01
+José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,1500.00,6,percent,10,2020-03-01
+Juvenal José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,1500.00,6,percent,10,2020-03-01
+Geremias José da Silva,235.454.545-54,08557-700,Rua das coves,441,Rondolândia do Sul,Acre,1500.00,6,percent,10,2020-03-01
 
 
 

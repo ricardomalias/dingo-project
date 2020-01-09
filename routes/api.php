@@ -50,7 +50,9 @@ $api->version('v1', function (Router $api) {
         $api->group(['prefix' => 'company'], function(Router $api) {
             $api->get('/{company_id}', 'App\\feature\\customer\\controller\\CustomerController@getCustomers');
             $api->get('/{company_id}/search/{query}', 'App\\feature\\customer\\controller\\CustomerController@getCustomerSearch');
-            $api->post('/{company_id}/list', 'App\\feature\\CustomerList\\controller\\CustomerListController@saveList');
+            $api->get('/{company_id}/list', 'App\\feature\\CustomerList\\controller\\CustomerListController@getCustomerLists');
+            $api->get('/{company_id}/list/{customer_list_id}', 'App\\feature\\CustomerList\\controller\\CustomerListController@getCustomerList');
+            $api->post('/{company_id}/list', 'App\\feature\\CustomerList\\controller\\CustomerListController@saveCustomerList');
         });
     });
 

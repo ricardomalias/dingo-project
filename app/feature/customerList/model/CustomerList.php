@@ -6,10 +6,14 @@ namespace App\feature\CustomerList\model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+use App\feature\customer\model\Customer;
+
 class CustomerList extends Model
 {
     protected $table = 'customer_list';
+
     public $primaryKey = 'customer_list_id';
+    protected $hidden = ['pivot'];
     public $casts = array(
         'customer_list_id' => 'string',
         'company_id' => 'string',
@@ -36,5 +40,10 @@ class CustomerList extends Model
     public function getKeyType()
     {
         return 'string';
+    }
+
+    public function customers() {
+        return $this->belongsToMany(Customer::class, 'customer_list_relationship', 'customer_list_id', 'customer_id')
+            ->where("customer_list_relationship.status", "=", "1");
     }
 }
