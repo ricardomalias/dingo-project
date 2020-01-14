@@ -24,8 +24,8 @@ Also was added the services and repositories concept.
     - To start docker run: `docker-compose up`
     - Open browser and access http://localhost:16543
 - Migration:
-    - You need to be had complete the application setup
-    - You need docker running you database 
+    - First, you must complete the Application setup above
+    - You need docker running you database
     - Run migration using: `php artisan migrate`
     - (Optional) if you will create a new table create that using migration: `php artisan make:migration YOUR_MIGRATION_NAME --create=TABLE_NAME`
     
