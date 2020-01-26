@@ -54,7 +54,7 @@ class CustomerListController extends Controller
     /**
      * Save customer list
      *
-     * @param CustomerSaveRequest $request
+     * @param CustomerListRequest $request
      * @return JsonResponse
      */
     public function saveCustomerList(CustomerListRequest $request, $company_id)

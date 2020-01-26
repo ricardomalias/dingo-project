@@ -83,6 +83,7 @@ $api->version('v1', function (Router $api) {
     });
 
     $api->get('public/debt/{debt_id}','App\\feature\\debt\\controller\\DebtPublicController@getDebt');
+    $api->post('public/debt/{debt_id}','App\\feature\\debt\\controller\\DebtPublicController@saveDebtNegotiation');
 
     $api->get('hello', function() {
         return response()->json([

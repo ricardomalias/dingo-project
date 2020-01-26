@@ -35,6 +35,7 @@ class DebtPublicController extends BaseControllerProvider
     /**
      * Get debt
      *
+     * @param $debt_id
      * @return \Illuminate\Http\JsonResponse
      */
     public function getDebt($debt_id)
@@ -60,6 +61,15 @@ class DebtPublicController extends BaseControllerProvider
             'debt' => $debt,
             'customer' => $customer,
             'configurations' => $company_configurations
+        ]);
+    }
+
+    public function saveDebtNegotiation()
+    {
+
+
+        return $this->response()->json([
+           'hello'
         ]);
     }
 }
