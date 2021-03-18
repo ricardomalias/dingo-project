@@ -1,4 +1,4 @@
-## Negotiator Application
+## Application
 
 Welcome to our API !
 
